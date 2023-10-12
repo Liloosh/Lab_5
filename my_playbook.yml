@@ -1,0 +1,24 @@
+- name: Playbook for updating system
+  hosts: localhost
+  become: true
+
+  tasks:
+    - name: update package system
+    apt:
+      update_cache: yes
+    tags:
+      - update_system
+
+    - name: installing Nginx
+      apt:
+        name: nginx
+        state: latest
+      tags:
+        - install_nginx
+
+    - name: installing openvpn
+      apt:
+          name: openvpn
+          state: present
+      tags:
+        - install_openvpn
